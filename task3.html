@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Live Code Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-rZoDJW7fdz4+QPtQOsbpfYXHU9cXJrJx6Ic3/AWm1jMv41XxXT7JtmKB1FUQ1MHLOgBqw3g8tg87X+VVqQ8IgA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<div class="container">
+    <div class="editor-pane">
+        <div class="editor">
+            <label><i class="fab fa-html5"></i>HTML</label>
+            <textarea id="html-code" onkeyup="run()" placeholder="Enter HTML code here..."></textarea>
+
+            <label><i class="fab fa-css3"></i>CSS</label>
+            <textarea id="css-code" onkeyup="run()" placeholder="Enter CSS code here..."></textarea>
+
+            <label><i class="fab fa-js"></i>JavaScript</label>
+            <textarea id="js-code" onkeyup="run()" placeholder="Enter JavaScript code here..."></textarea>
+        </div>
+    </div>
+    <div class="output-pane">
+        <label><i class="fas fa-play"></i>Output</label>
+        <iframe id="output"></iframe>
+    </div>
+</div>
+
+<script>
+    function run() {
+        let htmlCode = document.getElementById("html-code").value;
+        let cssCode = document.getElementById("css-code").value;
+        let jsCode = document.getElementById("js-code").value;
+        let output = document.getElementById("output");
+        output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+        output.contentWindow.eval(jsCode);
+    }
+</script>
+</body>
+</html>
